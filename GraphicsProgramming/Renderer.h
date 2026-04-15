@@ -1,7 +1,10 @@
 #pragma once
+#include <vector>
+#include "Light.h"
 
 class GameObject;
 class Transform;
+
 class Renderer
 {
 public:
@@ -13,9 +16,11 @@ public:
 	void DrawSphere();
 	void DrawModel(GameObject* gameObject);
 	void ApplyTransform(Transform objectTransform);
-	void ApplyMaterial();
+	void ApplyMaterial(const GameObject* gameObject);
+	void ApplyLights(const std::vector<Light*>& lights, const Vector3& globalAmbient);
 	void ApplyTexture(GameObject* gameObject);
 	void LoadTexture();
 
+	void RenderSphereAtLightLocation(Light* light);
 };
 

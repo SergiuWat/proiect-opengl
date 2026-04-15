@@ -24,6 +24,7 @@ private:
 	void ContentBrowserUI();
 	void PrimitiveObjectLoaderWindow();
 	void SceneHierarchyUI();
+	void ObjectDetailsUI();
 
 	const char* GetGameObjectDisplayName(GameObject* gameObject, int index);
 

@@ -21,6 +21,7 @@
 #include "Renderer.h"
 #include "TextureManager.h"
 #include "EditorUI.h"
+#include "Light.h"
 
 
 
@@ -103,7 +104,14 @@ protected:
 	GameObject* objectLoad(std::string modelPath, std::string texturePath);
 	Vector3 calculateSnapPosition(GameObject* target, GameObject* objectToPlace);
 
-
+	// LIGHTS
+	std::vector<Light*> lights;
+	Vector3 globalAmbient = Vector3(0.2f, 0.2f, 0.2f);
+	Light* selectedLight = nullptr;   
+	Light* inspectedLight = nullptr;  
+	void createLightPreview(LightType lightType);
+	const char* lightTypeToString(LightType lightType);
+	// LIGHTS
 	float snapSearchDistance = 20.0f;
 };
 

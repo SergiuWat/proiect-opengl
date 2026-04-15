@@ -148,13 +148,37 @@ void ModelLoader::RenderModel()
 	for (int i = 0; i < faces.size(); i += 9)
 	{
 		glBegin(GL_TRIANGLES);
-		std::cout << "x: " << texCoords[faces[i + 1] - 1].x << " y: " << texCoords[faces[i + 1] - 1].y << std::endl;
-		glTexCoord2f(texCoords[faces[i + 1] - 1].x, texCoords[faces[i + 1] - 1].y);
-		glVertex3f(vertices[faces[i]-1].x, vertices[faces[i]-1].y, vertices[faces[i]-1].z);
-		glTexCoord2f(texCoords[faces[i + 4] - 1].x, texCoords[faces[i + 4] - 1].y);
-		glVertex3f(vertices[faces[i + 3]-1].x, vertices[faces[i + 3]-1].y, vertices[faces[i + 3]-1].z);
-		glTexCoord2f(texCoords[faces[i + 7] - 1].x, texCoords[faces[i + 7] - 1].y);
-		glVertex3f(vertices[faces[i + 6]-1].x, vertices[faces[i + 6]-1].y, vertices[faces[i + 6]-1].z);
+
+		unsigned int v1 = faces[i] - 1;
+		unsigned int t1 = faces[i + 1] - 1;
+		unsigned int n1 = faces[i + 2] - 1;
+
+		unsigned int v2 = faces[i + 3] - 1;
+		unsigned int t2 = faces[i + 4] - 1;
+		unsigned int n2 = faces[i + 5] - 1;
+
+		unsigned int v3 = faces[i + 6] - 1;
+		unsigned int t3 = faces[i + 7] - 1;
+		unsigned int n3 = faces[i + 8] - 1;
+
+		if (!normals.empty())
+			glNormal3f(normals[n1 * 3], normals[n1 * 3 + 1], normals[n1 * 3 + 2]);
+		if (!texCoords.empty())
+			glTexCoord2f(texCoords[t1].x, texCoords[t1].y);
+		glVertex3f(vertices[v1].x, vertices[v1].y, vertices[v1].z);
+
+		if (!normals.empty())
+			glNormal3f(normals[n2 * 3], normals[n2 * 3 + 1], normals[n2 * 3 + 2]);
+		if (!texCoords.empty())
+			glTexCoord2f(texCoords[t2].x, texCoords[t2].y);
+		glVertex3f(vertices[v2].x, vertices[v2].y, vertices[v2].z);
+
+		if (!normals.empty())
+			glNormal3f(normals[n3 * 3], normals[n3 * 3 + 1], normals[n3 * 3 + 2]);
+		if (!texCoords.empty())
+			glTexCoord2f(texCoords[t3].x, texCoords[t3].y);
+		glVertex3f(vertices[v3].x, vertices[v3].y, vertices[v3].z);
+
 		glEnd();
 	}
 

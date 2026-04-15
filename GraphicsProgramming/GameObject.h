@@ -2,6 +2,7 @@
 #include "Transform.h"
 #include <iostream>
 #include "GameObjectTypes.h"
+#include "Material.h"
 
 class ModelLoader;
 class GameObject
@@ -22,6 +23,8 @@ public:
 	std::string modelPath;
 	std::string modelTexturePath;
 	unsigned int textureID;
+	Material material;
+
 	ModelLoader* model;
 	Transform transform;
 };

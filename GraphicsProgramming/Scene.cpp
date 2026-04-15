@@ -21,6 +21,7 @@ Scene::Scene(Input *in)
 
 	// Initialise scene variables
 	editorUI = new EditorUI(this);
+	
 }
 
 void Scene::handleInput(float dt)
@@ -50,10 +51,20 @@ void Scene::developerInputs(float dt)
 	if (input->isMouseRDown())
 	{
 		input->setMouseRDown(false);
-		if (selectedGameObject == nullptr)	return;
 
-		gameObjects.push_back(selectedGameObject);
-		selectedGameObject = nullptr;
+		if (selectedGameObject != nullptr)
+		{
+			gameObjects.push_back(selectedGameObject);
+			selectedGameObject = nullptr;
+			return;
+		}
+
+		if (selectedLight != nullptr)
+		{
+			lights.push_back(selectedLight);
+			selectedLight = nullptr;
+			return;
+		}
 	}
 	if (input->isKeyDown('h'))
 	{
@@ -66,13 +77,20 @@ void Scene::developerInputs(float dt)
 		input->setKeyUp('j');
 		snapEnabled = !snapEnabled;
 	}
-	if (input->isKeyDown(8)) // backspace
+	if (input->isKeyDown(127)) // delete key
 	{
-		input->setKeyUp(8);
+		input->setKeyUp(127);
 		if (selectedGameObject != nullptr)
 		{
 			delete selectedGameObject;
 			selectedGameObject = nullptr;
+			return;
+		}
+
+		if (selectedLight != nullptr)
+		{
+			delete selectedLight;
+			selectedLight = nullptr;
 			return;
 		}
 		if (inspectedGameObject != nullptr)
@@ -88,10 +106,30 @@ void Scene::developerInputs(float dt)
 				}
 			}
 		}
+		if (inspectedLight != nullptr)
+		{
+			for (auto it = lights.begin(); it != lights.end(); ++it)
+			{
+				if (*it == inspectedLight)
+				{
+					delete* it;
+					lights.erase(it);
+					inspectedLight = nullptr;
+					return;
+				}
+			}
+		}
 		if (!gameObjects.empty())
 		{
 			delete gameObjects.back();
 			gameObjects.pop_back();
+		}
+
+		if (!lights.empty())
+		{
+			delete lights.back();
+			lights.pop_back();
+			return;
 		}
 	}
 }
@@ -207,6 +245,21 @@ void Scene::update(float dt)
 			selectedGameObject->transform.setPosition(spawnPos);
 		}
 	}
+	if (selectedLight != nullptr)
+	{
+		Vector3 camPos = camera.getPosition();
+		Vector3 forward = camera.getForward();
+
+		float spawnDistance = 5.0f;
+
+		selectedLight->position = Vector3(
+			camPos.x + forward.x * spawnDistance,
+			camPos.y + forward.y * spawnDistance,
+			camPos.z + forward.z * spawnDistance
+		);
+
+		selectedLight->direction = forward;
+	}
 }
 
 void Scene::render() {
@@ -221,16 +274,29 @@ void Scene::render() {
 	gluLookAt(camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, camera.getLookAt().x, camera.getLookAt().y, camera.getLookAt().z, camera.getUp().x, camera.getUp().y, camera.getUp().z);
 	//gluLookAt(0, 0.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 	// Render geometry/scene here -------------------------------------
-
+	renderer.ApplyLights(lights, globalAmbient);
 	if (selectedGameObject != nullptr)
 	{
 		
 		renderer.Render(selectedGameObject);
 	}
+
 	
 	for (auto& gameObject : gameObjects)
 	{
 		renderer.Render(gameObject);
+	}
+	if (editorMode)
+	{
+		for (auto& light : lights)
+		{
+			renderer.RenderSphereAtLightLocation(light);
+		}
+
+		if (selectedLight != nullptr)
+		{
+			renderer.RenderSphereAtLightLocation(selectedLight);
+		}
 	}
 	// End render geometry --------------------------------------
 
@@ -253,6 +319,9 @@ void Scene::initialiseOpenGL()
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculations
 	glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);	
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);	// Blending function
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_NORMALIZE);
 }
 
 // Handles the resize of the window. If the window changes size the perspective matrix requires re-calculation to match new window size.
@@ -438,6 +507,44 @@ Vector3 Scene::calculateSnapPosition(GameObject* target, GameObject* objectToPla
 	}
 
 	return newPos;
+}
+void Scene::createLightPreview(LightType lightType)
+{
+	if (selectedLight != nullptr)
+	{
+		delete selectedLight;
+		selectedLight = nullptr;
+	}
+
+	selectedLight = new Light();
+	selectedLight->type = lightType;
+	selectedLight->name = lightTypeToString(lightType);
+	selectedLight->active = true;
+	selectedLight->visible = true;
+
+	if (lightType == LightType::Directional)
+	{
+		selectedLight->direction = camera.getForward();
+	}
+	else
+	{
+		selectedLight->position = camera.getPosition();
+		selectedLight->direction = camera.getForward();
+	}
+}
+const char* Scene::lightTypeToString(LightType lightType)
+{
+	switch (lightType)
+	{
+	case LightType::Directional:
+		return "DirectionalLight";
+	case LightType::Spotlight:
+		return "SpotLight";
+	case LightType::Point:
+		return "PointLight";
+	default:
+		return "UnknownLight";
+	}
 }
 // Calculates FPS
 void Scene::calculateFPS()
