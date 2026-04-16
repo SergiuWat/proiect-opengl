@@ -25,7 +25,7 @@ private:
 	void PrimitiveObjectLoaderWindow();
 	void SceneHierarchyUI();
 	void ObjectDetailsUI();
-
+	void TerrainUI();
 	const char* GetGameObjectDisplayName(GameObject* gameObject, int index);
 
 	std::string selectedModelPath;

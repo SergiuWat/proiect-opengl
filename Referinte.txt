@@ -1,1 +1,2 @@
 https://github.com/ocornut/imgui?tab=readme-ov-file - pentru ImGUI
+https://www.scratchapixel.com/lessons/procedural-generation-virtual-worlds/perlin-noise-part-2/perlin-noise.html - TERRAIN

@@ -21,6 +21,9 @@ Scene::Scene(Input *in)
 
 	// Initialise scene variables
 	editorUI = new EditorUI(this);
+
+	terrain.Generate(terrainWidth, terrainDepth, terrainCellSize, terrainHeightScale, terrainNoiseScale, terrainSeed);
+	terrainTextureID = textureManager.LoadTexture("gfx/grass.png");
 	
 }
 
@@ -274,7 +277,24 @@ void Scene::render() {
 	gluLookAt(camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, camera.getLookAt().x, camera.getLookAt().y, camera.getLookAt().z, camera.getUp().x, camera.getUp().y, camera.getUp().z);
 	//gluLookAt(0, 0.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 	// Render geometry/scene here -------------------------------------
-	renderer.ApplyLights(lights, globalAmbient);
+	//renderer.ApplyLights(lights, globalAmbient);
+
+	glDisable(GL_LIGHTING);
+	if (showTerrain)
+	{
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, terrainTextureID);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		terrain.Render();
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+	glEnable(GL_LIGHTING);
 	if (selectedGameObject != nullptr)
 	{
 		
@@ -363,6 +383,17 @@ void Scene::renderEditorUI()
 	}
 }
 
+void Scene::regenerateTerrain()
+{
+	terrain.Generate(
+		terrainWidth,
+		terrainDepth,
+		terrainCellSize,
+		terrainHeightScale,
+		terrainNoiseScale,
+		terrainSeed
+	);
+}
 
 
 void Scene::createPrimitivePreview(PrimitiveType primitiveType)

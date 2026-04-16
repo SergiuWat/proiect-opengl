@@ -22,6 +22,7 @@
 #include "TextureManager.h"
 #include "EditorUI.h"
 #include "Light.h"
+#include "Terrain.h"
 
 
 
@@ -103,6 +104,18 @@ protected:
 	GameObject* findObjectInFront();
 	GameObject* objectLoad(std::string modelPath, std::string texturePath);
 	Vector3 calculateSnapPosition(GameObject* target, GameObject* objectToPlace);
+
+	Terrain terrain;
+	int terrainSeed = 6767;
+	unsigned int terrainTextureID = 0;
+	bool showTerrain = true;
+
+	int terrainWidth = 200;
+	int terrainDepth = 200;
+	float terrainCellSize = 1.0f;
+	float terrainHeightScale = 2.0f;
+	float terrainNoiseScale = 0.05f;
+	void regenerateTerrain();
 
 	// LIGHTS
 	std::vector<Light*> lights;

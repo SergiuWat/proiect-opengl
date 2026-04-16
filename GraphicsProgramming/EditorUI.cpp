@@ -20,6 +20,7 @@ void EditorUI::Render()
 	ContentBrowserUI();
 	SceneHierarchyUI();
 	ObjectDetailsUI();
+	TerrainUI();
 }
 
 void EditorUI::DeveloperInformation()
@@ -604,6 +605,27 @@ void EditorUI::ObjectDetailsUI()
 	{
 		object->modelTexturePath.clear();
 		object->textureID = 0;
+	}
+
+	ImGui::End();
+}
+
+void EditorUI::TerrainUI()
+{
+	ImGui::Begin("Terrain Settings");
+
+	ImGui::InputInt("Width", &scene->terrainWidth);
+	ImGui::InputInt("Depth", &scene->terrainDepth);
+
+	ImGui::InputFloat("Cell Size", &scene->terrainCellSize);
+	ImGui::InputFloat("Height Scale", &scene->terrainHeightScale);
+	ImGui::InputFloat("Noise Scale", &scene->terrainNoiseScale);
+
+	ImGui::InputInt("Seed", &scene->terrainSeed);
+
+	if (ImGui::Button("Regenerate Terrain"))
+	{
+		scene->regenerateTerrain();
 	}
 
 	ImGui::End();
