@@ -113,6 +113,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="EditorUI.h" />
+    <ClInclude Include="external\nlohmann\json.hpp" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectTypes.h" />
     <ClInclude Include="Input.h" />

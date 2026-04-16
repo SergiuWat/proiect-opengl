@@ -126,6 +126,10 @@ protected:
 	const char* lightTypeToString(LightType lightType);
 	// LIGHTS
 	float snapSearchDistance = 20.0f;
+
+	bool SaveScene(const std::string& filePath);
+	bool LoadScene(const std::string& filePath);
+	void ClearScene();
 };
 
 #endif

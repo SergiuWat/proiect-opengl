@@ -5,6 +5,11 @@
 #include <filesystem>
 #include <string>
 #include "ModelLoader.h"
+#include "external/nlohmann/json.hpp"
+#include <fstream>
+
+using json = nlohmann::json;
+
 namespace fs = std::filesystem;
 // Scene constructor, initilises OpenGL
 // You should add further variables to need initilised.
@@ -22,8 +27,24 @@ Scene::Scene(Input *in)
 	// Initialise scene variables
 	editorUI = new EditorUI(this);
 
-	terrain.Generate(terrainWidth, terrainDepth, terrainCellSize, terrainHeightScale, terrainNoiseScale, terrainSeed);
-	terrainTextureID = textureManager.LoadTexture("gfx/grass.png");
+	/*terrain.Generate(terrainWidth, terrainDepth, terrainCellSize, terrainHeightScale, terrainNoiseScale, terrainSeed);*/
+	//terrainTextureID = textureManager.LoadTexture("gfx/grass.png");
+
+
+	//globalAmbient = Vector3(0.35f, 0.35f, 0.35f);
+
+	//Light* defaultLight = new Light();
+	//defaultLight->name = "DefaultDirectional";
+	//defaultLight->type = LightType::Directional;
+	//defaultLight->active = true;
+	//defaultLight->visible = true;
+	//defaultLight->direction = Vector3(-1.0f, -1.0f, -0.5f);
+	//defaultLight->ambient = Vector3(0.15f, 0.15f, 0.15f);
+	//defaultLight->diffuse = Vector3(0.9f, 0.9f, 0.9f);
+	//defaultLight->specular = Vector3(1.0f, 1.0f, 1.0f);
+
+	//lights.push_back(defaultLight);
+	LoadScene("scene.json");
 	
 }
 
@@ -277,9 +298,8 @@ void Scene::render() {
 	gluLookAt(camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, camera.getLookAt().x, camera.getLookAt().y, camera.getLookAt().z, camera.getUp().x, camera.getUp().y, camera.getUp().z);
 	//gluLookAt(0, 0.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 	// Render geometry/scene here -------------------------------------
-	//renderer.ApplyLights(lights, globalAmbient);
+	renderer.ApplyLights(lights, globalAmbient);
 
-	glDisable(GL_LIGHTING);
 	if (showTerrain)
 	{
 		glEnable(GL_TEXTURE_2D);
@@ -294,7 +314,7 @@ void Scene::render() {
 
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
-	glEnable(GL_LIGHTING);
+
 	if (selectedGameObject != nullptr)
 	{
 		
@@ -577,6 +597,367 @@ const char* Scene::lightTypeToString(LightType lightType)
 		return "UnknownLight";
 	}
 }
+bool Scene::SaveScene(const std::string& filePath)
+{
+	json sceneJson;
+
+	sceneJson["terrain"]["showTerrain"] = showTerrain;
+	sceneJson["terrain"]["terrainSeed"] = terrainSeed;
+	sceneJson["terrain"]["terrainWidth"] = terrainWidth;
+	sceneJson["terrain"]["terrainDepth"] = terrainDepth;
+	sceneJson["terrain"]["terrainCellSize"] = terrainCellSize;
+	sceneJson["terrain"]["terrainHeightScale"] = terrainHeightScale;
+	sceneJson["terrain"]["terrainNoiseScale"] = terrainNoiseScale;
+	sceneJson["terrain"]["terrainTexturePath"] = "gfx/grass.png";
+
+	sceneJson["globalAmbient"] = {
+		globalAmbient.x,
+		globalAmbient.y,
+		globalAmbient.z
+	};
+
+	sceneJson["objects"] = json::array();
+
+	for (GameObject* object : gameObjects)
+	{
+		if (object == nullptr)
+			continue;
+
+		json objectJson;
+
+		objectJson["id"] = object->id;
+		objectJson["objectName"] = object->objectName;
+		objectJson["active"] = object->active;
+		objectJson["visible"] = object->visible;
+		objectJson["selected"] = object->selected;
+
+		objectJson["type"] = static_cast<int>(object->type);
+		objectJson["primitiveType"] = static_cast<int>(object->primitiveType);
+
+		objectJson["modelPath"] = object->modelPath;
+		objectJson["modelTexturePath"] = object->modelTexturePath;
+
+		objectJson["transform"]["position"] = {
+			object->transform.position.x,
+			object->transform.position.y,
+			object->transform.position.z
+		};
+
+		objectJson["transform"]["rotation"] = {
+			object->transform.rotation.x,
+			object->transform.rotation.y,
+			object->transform.rotation.z
+		};
+
+		objectJson["transform"]["scale"] = {
+			object->transform.scale.x,
+			object->transform.scale.y,
+			object->transform.scale.z
+		};
+
+		objectJson["material"]["ambient"] = {
+			object->material.ambient.x,
+			object->material.ambient.y,
+			object->material.ambient.z
+		};
+
+		objectJson["material"]["diffuse"] = {
+			object->material.diffuse.x,
+			object->material.diffuse.y,
+			object->material.diffuse.z
+		};
+
+		objectJson["material"]["specular"] = {
+			object->material.specular.x,
+			object->material.specular.y,
+			object->material.specular.z
+		};
+
+		objectJson["material"]["shininess"] = object->material.shininess;
+
+		sceneJson["objects"].push_back(objectJson);
+	}
+
+	sceneJson["lights"] = json::array();
+
+	for (Light* light : lights)
+	{
+		if (light == nullptr)
+			continue;
+
+		json lightJson;
+
+		lightJson["name"] = light->name;
+		lightJson["type"] = static_cast<int>(light->type);
+		lightJson["active"] = light->active;
+		lightJson["visible"] = light->visible;
+
+		lightJson["position"] = {
+			light->position.x,
+			light->position.y,
+			light->position.z
+		};
+
+		lightJson["direction"] = {
+			light->direction.x,
+			light->direction.y,
+			light->direction.z
+		};
+
+		lightJson["ambient"] = {
+			light->ambient.x,
+			light->ambient.y,
+			light->ambient.z
+		};
+
+		lightJson["diffuse"] = {
+			light->diffuse.x,
+			light->diffuse.y,
+			light->diffuse.z
+		};
+
+		lightJson["specular"] = {
+			light->specular.x,
+			light->specular.y,
+			light->specular.z
+		};
+
+		lightJson["constantAttenuation"] = light->constantAttenuation;
+		lightJson["linearAttenuation"] = light->linearAttenuation;
+		lightJson["quadraticAttenuation"] = light->quadraticAttenuation;
+		lightJson["cutoff"] = light->cutoff;
+		lightJson["exponent"] = light->exponent;
+
+		sceneJson["lights"].push_back(lightJson);
+	}
+
+	std::ofstream outFile(filePath);
+	if (!outFile.is_open())
+		return false;
+
+	outFile << sceneJson.dump(4);
+	outFile.close();
+
+	return true;
+}
+bool Scene::LoadScene(const std::string& filePath)
+{
+	std::ifstream inFile(filePath);
+	if (!inFile.is_open())
+		return false;
+
+	json sceneJson;
+	inFile >> sceneJson;
+	inFile.close();
+
+	ClearScene();
+
+	if (sceneJson.contains("terrain"))
+	{
+		terrainSeed = sceneJson["terrain"].value("terrainSeed", 6767);
+		terrainWidth = sceneJson["terrain"].value("terrainWidth", 200);
+		terrainDepth = sceneJson["terrain"].value("terrainDepth", 200);
+		terrainCellSize = sceneJson["terrain"].value("terrainCellSize", 1.0f);
+		terrainHeightScale = sceneJson["terrain"].value("terrainHeightScale", 2.0f);
+		terrainNoiseScale = sceneJson["terrain"].value("terrainNoiseScale", 0.05f);
+		showTerrain = sceneJson["terrain"].value("showTerrain", true);
+
+		terrain.Generate(
+			terrainWidth,
+			terrainDepth,
+			terrainCellSize,
+			terrainHeightScale,
+			terrainNoiseScale,
+			terrainSeed
+		);
+
+		std::string terrainTexturePath = sceneJson["terrain"].value("terrainTexturePath", std::string("gfx/grass.png"));
+		terrainTextureID = textureManager.LoadTexture(terrainTexturePath);
+	}
+
+	if (sceneJson.contains("globalAmbient") && sceneJson["globalAmbient"].is_array() && sceneJson["globalAmbient"].size() == 3)
+	{
+		globalAmbient.x = sceneJson["globalAmbient"][0];
+		globalAmbient.y = sceneJson["globalAmbient"][1];
+		globalAmbient.z = sceneJson["globalAmbient"][2];
+	}
+
+	if (sceneJson.contains("objects"))
+	{
+		for (const auto& objectJson : sceneJson["objects"])
+		{
+			GameObject* object = new GameObject();
+
+			object->id = objectJson.value("id", 0);
+			object->objectName = objectJson.value("objectName", std::string("GameObject"));
+			object->active = objectJson.value("active", true);
+			object->visible = objectJson.value("visible", true);
+			object->selected = objectJson.value("selected", false);
+
+			object->type = static_cast<GameObjectType>(objectJson.value("type", 0));
+			object->primitiveType = static_cast<PrimitiveType>(objectJson.value("primitiveType", 0));
+
+			object->modelPath = objectJson.value("modelPath", std::string(""));
+			object->modelTexturePath = objectJson.value("modelTexturePath", std::string(""));
+
+			if (objectJson.contains("transform"))
+			{
+				const auto& transformJson = objectJson["transform"];
+
+				if (transformJson.contains("position"))
+				{
+					object->transform.position.x = transformJson["position"][0];
+					object->transform.position.y = transformJson["position"][1];
+					object->transform.position.z = transformJson["position"][2];
+				}
+
+				if (transformJson.contains("rotation"))
+				{
+					object->transform.rotation.x = transformJson["rotation"][0];
+					object->transform.rotation.y = transformJson["rotation"][1];
+					object->transform.rotation.z = transformJson["rotation"][2];
+				}
+
+				if (transformJson.contains("scale"))
+				{
+					object->transform.scale.x = transformJson["scale"][0];
+					object->transform.scale.y = transformJson["scale"][1];
+					object->transform.scale.z = transformJson["scale"][2];
+				}
+			}
+
+			if (objectJson.contains("material"))
+			{
+				const auto& materialJson = objectJson["material"];
+
+				if (materialJson.contains("ambient"))
+				{
+					object->material.ambient.x = materialJson["ambient"][0];
+					object->material.ambient.y = materialJson["ambient"][1];
+					object->material.ambient.z = materialJson["ambient"][2];
+				}
+
+				if (materialJson.contains("diffuse"))
+				{
+					object->material.diffuse.x = materialJson["diffuse"][0];
+					object->material.diffuse.y = materialJson["diffuse"][1];
+					object->material.diffuse.z = materialJson["diffuse"][2];
+				}
+
+				if (materialJson.contains("specular"))
+				{
+					object->material.specular.x = materialJson["specular"][0];
+					object->material.specular.y = materialJson["specular"][1];
+					object->material.specular.z = materialJson["specular"][2];
+				}
+
+				object->material.shininess = materialJson.value("shininess", 32.0f);
+			}
+
+			if (object->type == GameObjectType::Model && !object->modelPath.empty())
+			{
+				object->model = new ModelLoader();
+				object->model->LoadModel(object->modelPath.c_str());
+			}
+
+			if (!object->modelTexturePath.empty())
+			{
+				object->textureID = textureManager.LoadTexture(object->modelTexturePath);
+			}
+
+			gameObjects.push_back(object);
+		}
+	}
+
+	if (sceneJson.contains("lights"))
+	{
+		for (const auto& lightJson : sceneJson["lights"])
+		{
+			Light* light = new Light();
+
+			light->name = lightJson.value("name", std::string("Light"));
+			light->type = static_cast<LightType>(lightJson.value("type", 0));
+			light->active = lightJson.value("active", true);
+			light->visible = lightJson.value("visible", true);
+
+			if (lightJson.contains("position"))
+			{
+				light->position.x = lightJson["position"][0];
+				light->position.y = lightJson["position"][1];
+				light->position.z = lightJson["position"][2];
+			}
+
+			if (lightJson.contains("direction"))
+			{
+				light->direction.x = lightJson["direction"][0];
+				light->direction.y = lightJson["direction"][1];
+				light->direction.z = lightJson["direction"][2];
+			}
+
+			if (lightJson.contains("ambient"))
+			{
+				light->ambient.x = lightJson["ambient"][0];
+				light->ambient.y = lightJson["ambient"][1];
+				light->ambient.z = lightJson["ambient"][2];
+			}
+
+			if (lightJson.contains("diffuse"))
+			{
+				light->diffuse.x = lightJson["diffuse"][0];
+				light->diffuse.y = lightJson["diffuse"][1];
+				light->diffuse.z = lightJson["diffuse"][2];
+			}
+
+			if (lightJson.contains("specular"))
+			{
+				light->specular.x = lightJson["specular"][0];
+				light->specular.y = lightJson["specular"][1];
+				light->specular.z = lightJson["specular"][2];
+			}
+
+			light->constantAttenuation = lightJson.value("constantAttenuation", 1.0f);
+			light->linearAttenuation = lightJson.value("linearAttenuation", 0.09f);
+			light->quadraticAttenuation = lightJson.value("quadraticAttenuation", 0.032f);
+			light->cutoff = lightJson.value("cutoff", 20.0f);
+			light->exponent = lightJson.value("exponent", 16.0f);
+
+			lights.push_back(light);
+		}
+	}
+
+	return true;
+}
+
+void Scene::ClearScene()
+{
+	for (GameObject* object : gameObjects)
+	{
+		delete object;
+	}
+	gameObjects.clear();
+
+	for (Light* light : lights)
+	{
+		delete light;
+	}
+	lights.clear();
+
+	if (selectedGameObject != nullptr)
+	{
+		delete selectedGameObject;
+		selectedGameObject = nullptr;
+	}
+
+	if (selectedLight != nullptr)
+	{
+		delete selectedLight;
+		selectedLight = nullptr;
+	}
+
+	inspectedGameObject = nullptr;
+	inspectedLight = nullptr;
+}
+
 // Calculates FPS
 void Scene::calculateFPS()
 {

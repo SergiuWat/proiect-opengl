@@ -141,7 +141,6 @@ void EditorUI::ContentBrowserUI()
 	ImGui::TextWrapped("Selected Texture: %s", selectedTexturePath.empty() ? "None" : selectedTexturePath.c_str());
 	ImGui::End();
 
-	// Loader
 	ImGui::SetNextWindowSize(ImVec2(windowWidth, windowHeight), ImGuiCond_Always);
 	ImGui::SetNextWindowPos(ImVec2(windowWidth * 2.0f, startY), ImGuiCond_Always);
 	ImGui::Begin("Asset Loader");
@@ -162,7 +161,7 @@ void EditorUI::ContentBrowserUI()
 
 void EditorUI::PrimitiveObjectLoaderWindow()
 {
-	ImGui::SetNextWindowSize(ImVec2(260, 220), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(260, 320), ImGuiCond_FirstUseEver);
 	ImGui::Begin("Editor");
 
 	ImGui::Text("Developer Mode: ON");
@@ -192,7 +191,6 @@ void EditorUI::PrimitiveObjectLoaderWindow()
 
 	ImGui::Text("Placed Objects: %d", (int)scene->gameObjects.size());
 
-
 	ImGui::Separator();
 	ImGui::Text("Lights");
 
@@ -217,9 +215,24 @@ void EditorUI::PrimitiveObjectLoaderWindow()
 		ImGui::Text("Right click to place light");
 	}
 
-	ImGui::End();
+	ImGui::Separator();
 
-	
+	if (ImGui::Button("Save Scene"))
+	{
+		scene->SaveScene("scene.json");
+	}
+
+	if (ImGui::Button("Load Scene"))
+	{
+		scene->LoadScene("scene.json");
+	}
+
+	if (ImGui::Button("Clear Scene"))
+	{
+		scene->ClearScene();
+	}
+
+	ImGui::End();
 }
 
 void EditorUI::SceneHierarchyUI()
@@ -288,9 +301,6 @@ void EditorUI::ObjectDetailsUI()
 
 	ImGui::Begin("Inspector");
 
-	// =========================
-	// LIGHT INSPECTOR
-	// =========================
 	if (scene->inspectedLight != nullptr)
 	{
 		Light* light = scene->inspectedLight;
@@ -372,14 +382,11 @@ void EditorUI::ObjectDetailsUI()
 			light->specular.z
 		};
 
-		if (light->type != LightType::Directional)
+		if (ImGui::InputFloat3("Position", position))
 		{
-			if (ImGui::InputFloat3("Position", position))
-			{
-				light->position.x = position[0];
-				light->position.y = position[1];
-				light->position.z = position[2];
-			}
+			light->position.x = position[0];
+			light->position.y = position[1];
+			light->position.z = position[2];
 		}
 
 		if (ImGui::InputFloat3("Direction", direction))
@@ -447,9 +454,6 @@ void EditorUI::ObjectDetailsUI()
 		return;
 	}
 
-	// =========================
-	// GAMEOBJECT INSPECTOR
-	// =========================
 	if (scene->inspectedGameObject == nullptr)
 	{
 		ImGui::Text("No object selected.");
