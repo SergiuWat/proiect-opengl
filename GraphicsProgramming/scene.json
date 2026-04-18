@@ -8,29 +8,29 @@
         {
             "active": true,
             "ambient": [
-                0.15000000596046448,
-                0.15000000596046448,
-                0.15000000596046448
+                0.10000000149011612,
+                0.10000000149011612,
+                0.10000000149011612
             ],
             "constantAttenuation": 1.0,
             "cutoff": 20.0,
             "diffuse": [
-                0.8999999761581421,
-                0.8999999761581421,
-                0.8999999761581421
+                1.0,
+                1.0,
+                1.0
             ],
             "direction": [
-                -1.0,
-                -1.0,
-                -0.5
+                -0.05590350180864334,
+                0.9520111083984375,
+                0.3009147346019745
             ],
             "exponent": 16.0,
             "linearAttenuation": 0.09000000357627869,
-            "name": "DefaultDirectional",
+            "name": "DirectionalLight",
             "position": [
-                0.0,
-                0.0,
-                0.0
+                73.12918090820313,
+                45.0809211730957,
+                33.76540756225586
             ],
             "quadraticAttenuation": 0.03200000151991844,
             "specular": [
@@ -64,16 +64,16 @@
                     1.0
                 ]
             },
-            "modelPath": "",
-            "modelTexturePath": "",
-            "objectName": "Cube_",
+            "modelPath": "models/tree.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree_4294967295",
             "primitiveType": 1,
             "selected": false,
             "transform": {
                 "position": [
-                    21.507850646972656,
-                    2.5414280891418457,
-                    20.66004753112793
+                    88.53388214111328,
+                    1.3636903762817383,
+                    70.86387634277344
                 ],
                 "rotation": [
                     0.0,
@@ -86,7 +86,835 @@
                     1.0
                 ]
             },
-            "type": 0,
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree_0",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    88.49821472167969,
+                    0.38063740730285645,
+                    63.97569274902344
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree_1",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    86.34163665771484,
+                    0.9361304044723511,
+                    79.04332733154297
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree_2",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    71.44992065429688,
+                    0.561184823513031,
+                    83.6436767578125
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree_3",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    66.99310302734375,
+                    0.5448904037475586,
+                    62.04374313354492
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree_4",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    56.133323669433594,
+                    0.9468660354614258,
+                    81.20124816894531
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree-crooked.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree-crooked_5",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    62.98193359375,
+                    0.957298994064331,
+                    81.29966735839844
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree-high-crooked.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree-high-crooked_6",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    46.26340866088867,
+                    0.7631183862686157,
+                    60.043922424316406
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree-high-round.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree-high-round_7",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    39.162925720214844,
+                    1.1176176071166992,
+                    53.951744079589844
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree-high-round.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree-high-round_8",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    52.737648010253906,
+                    0.7250254154205322,
+                    72.91583251953125
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree-high-round.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree-high-round_9",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    54.393192291259766,
+                    0.28406524658203125,
+                    64.1579360961914
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree-high.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree-high_10",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    82.88410186767578,
+                    0.7748798131942749,
+                    42.86467742919922
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree-high-round.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree-high-round_11",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    71.5996322631836,
+                    2.0600509643554688,
+                    43.84440612792969
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree-crooked.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree-crooked_12",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    92.41279602050781,
+                    0.04334986209869385,
+                    50.343162536621094
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree-high.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree-high_13",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    106.11164855957031,
+                    0.8031080365180969,
+                    54.77875518798828
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/tree.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "tree_14",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    97.67640686035156,
+                    0.2790125608444214,
+                    81.17961120605469
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/rock-large.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "rock-large_15",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    64.80911254882813,
+                    1.5659921169281006,
+                    118.5755844116211
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/rock-small.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "rock-small_16",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    78.14924621582031,
+                    0.3079080581665039,
+                    105.94441223144531
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/rock-wide.obj",
+            "modelTexturePath": "textures/colormap.png",
+            "objectName": "rock-wide_17",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    87.99566650390625,
+                    0.9940063953399658,
+                    100.87886810302734
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "type": 1,
             "visible": true
         }
     ],

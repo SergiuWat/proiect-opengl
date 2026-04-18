@@ -1,2 +1,7 @@
 https://github.com/ocornut/imgui?tab=readme-ov-file - pentru ImGUI
 https://www.scratchapixel.com/lessons/procedural-generation-virtual-worlds/perlin-noise-part-2/perlin-noise.html - TERRAIN
+https://github.com/nlohmann/json - pentru json
+lab 8 - pentru sphere procedurale
+lab 2 - pentru sistemul solar
+lab 6 - pentru camera
+lab 7 - skybox

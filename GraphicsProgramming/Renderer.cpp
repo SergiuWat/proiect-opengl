@@ -11,12 +11,9 @@ Renderer::Renderer()
 
 void Renderer::Render(GameObject* gameObject)
 {
-	// de vazut cum ma pot folosi de imgui sa arata mesaj de erorare (gameobject is null)
 	if (gameObject == nullptr) return;
 
 	glPushMatrix();
-	// vom chema functiile de setare a transformarilor, materialelor, texturilor 
-
 	ApplyTransform(gameObject->transform);
 	ApplyMaterial(gameObject);
     if (gameObject->textureID != 0)
@@ -202,6 +199,18 @@ void Renderer::ApplyMaterial(const GameObject* gameObject)
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse);
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, gameObject->material.shininess);
+}
+
+void Renderer::ApplyMaterial(const Vector3& ambient, const Vector3& diffuse, const Vector3& specular, float shininess)
+{
+    GLfloat amb[] = { ambient.x, ambient.y, ambient.z, 1.0f };
+    GLfloat diff[] = { diffuse.x, diffuse.y, diffuse.z, 1.0f };
+    GLfloat spec[] = { specular.x, specular.y, specular.z, 1.0f };
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
 }
 
 void Renderer::ApplyLights(const std::vector<Light*>& lights, const Vector3& globalAmbient)

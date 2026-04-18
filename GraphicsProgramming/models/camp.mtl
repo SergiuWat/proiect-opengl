@@ -1,0 +1,12 @@
+# Blender 5.1.1 MTL File: 'None'
+# www.blender.org
+
+newmtl Object001_mtl
+Ns 20.000006
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Users/drago/Downloads/low-poly-camp/source/Camp/Object001_2016-10-30_13-01-29_complete.rpf_converted.jpg

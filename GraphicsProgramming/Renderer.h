@@ -17,6 +17,7 @@ public:
 	void DrawModel(GameObject* gameObject);
 	void ApplyTransform(Transform objectTransform);
 	void ApplyMaterial(const GameObject* gameObject);
+	void ApplyMaterial(const Vector3& ambient, const Vector3& diffuse, const Vector3& specular, float shininess);
 	void ApplyLights(const std::vector<Light*>& lights, const Vector3& globalAmbient);
 	void ApplyTexture(GameObject* gameObject);
 	void LoadTexture();

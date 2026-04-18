@@ -23,7 +23,8 @@
 #include "EditorUI.h"
 #include "Light.h"
 #include "Terrain.h"
-
+#include "ProceduralGeneratedShapes.h"
+#include "Skybox.h"
 
 
 class Scene{
@@ -87,6 +88,26 @@ protected:
 	char fps[40];
 	char mouseText[40];
 
+	// Solar system variables and functions
+	float rotation = 50.f;
+	float speed = 50.f;
+	
+	Skybox skybox;
+
+	ProceduralGeneratedShapes proceduralShapes;
+
+	Vector3 solarSystemPosition = Vector3(20.0f, 8.0f, 20.0f);
+
+	float solarSystemRotation = 0.0f;
+	float solarSystemRotationSpeed = 20.0f;
+
+	void drawSolarSystem();
+	void drawSun();
+	void drawEarth();
+	void drawEarth2();
+	void drawEarth2FirstMoon();
+	void drawEarth2SecondMoon();
+	void drawEarth2MoonWithAMoon();
 
 	//Edit functions
 	EditorUI* editorUI;

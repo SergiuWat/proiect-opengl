@@ -48,10 +48,9 @@ void EditorUI::DeveloperInformation()
 	ImGui::Text("Press 'j' to toggle snap");
 	ImGui::Separator();
 
-	ImGui::Text("Camera Position: (%.2f, %.2f, %.2f)",
-		scene->camera.getPosition().x,
-		scene->camera.getPosition().y,
-		scene->camera.getPosition().z);
+	ImGui::Text("Camera Position: (%.2f, %.2f, %.2f)", scene->camera.getPosition().x, scene->camera.getPosition().y, scene->camera.getPosition().z);
+
+	ImGui::Text("Camera Rotation: (%.2f, %.2f, %.2f)", scene->camera.Yaw, scene->camera.Pitch, scene->camera.Roll);
 
 	ImGui::End();
 }

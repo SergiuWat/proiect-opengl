@@ -103,8 +103,10 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="ModelLoader.cpp" />
+    <ClCompile Include="ProceduralGeneratedShapes.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Transform.cpp" />
@@ -120,8 +122,10 @@
     <ClInclude Include="Light.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="ModelLoader.h" />
+    <ClInclude Include="ProceduralGeneratedShapes.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Transform.h" />

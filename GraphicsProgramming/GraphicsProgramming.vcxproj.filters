@@ -84,6 +84,12 @@
     <ClCompile Include="Terrain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProceduralGeneratedShapes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -129,6 +135,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="external\nlohmann\json.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProceduralGeneratedShapes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
