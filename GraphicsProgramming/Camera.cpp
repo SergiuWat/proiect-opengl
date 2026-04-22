@@ -3,9 +3,12 @@
 
 Camera::Camera()
 {
-	position = Vector3(0, 0, 6);
+	position = Vector3(29, 4, 16);
 	lookAt = Vector3(0, 0, 0);
 	up = Vector3(0, 1, 0);
+	Yaw = -213.f;
+	Pitch = -7.5f;
+	Roll = 0.f;
 }
 
 void Camera::Update()

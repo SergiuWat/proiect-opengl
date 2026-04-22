@@ -40,6 +40,42 @@
             ],
             "type": 0,
             "visible": true
+        },
+        {
+            "active": true,
+            "ambient": [
+                0.20000000298023224,
+                0.05000000074505806,
+                0.0
+            ],
+            "constantAttenuation": 1.0,
+            "cutoff": 20.0,
+            "diffuse": [
+                1.0,
+                0.30000001192092896,
+                0.10000000149011612
+            ],
+            "direction": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "exponent": 16.0,
+            "linearAttenuation": 0.09000000357627869,
+            "name": "FireLight",
+            "position": [
+                0.0,
+                2.0,
+                0.0
+            ],
+            "quadraticAttenuation": 0.03200000151991844,
+            "specular": [
+                1.0,
+                0.5,
+                0.20000000298023224
+            ],
+            "type": 2,
+            "visible": true
         }
     ],
     "objects": [
@@ -912,6 +948,144 @@
                     1.0,
                     1.0,
                     1.0
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/farm.obj",
+            "modelTexturePath": "textures/farm.jpg",
+            "objectName": "farm_18",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    160.0,
+                    1.2000000476837158,
+                    66.0
+                ],
+                "rotation": [
+                    1.0,
+                    180.0,
+                    0.0
+                ],
+                "scale": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/camp.obj",
+            "modelTexturePath": "textures/camp.jpg",
+            "objectName": "camp_19",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    74.0,
+                    1.600000023841858,
+                    67.0
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    0.05000000074505806,
+                    0.05000000074505806,
+                    0.05000000074505806
+                ]
+            },
+            "type": 1,
+            "visible": true
+        },
+        {
+            "active": true,
+            "id": 0,
+            "material": {
+                "ambient": [
+                    0.20000000298023224,
+                    0.20000000298023224,
+                    0.20000000298023224
+                ],
+                "diffuse": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "shininess": 32.0,
+                "specular": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "modelPath": "models/drone.obj",
+            "modelTexturePath": "textures/Drone_Diff.jpg",
+            "objectName": "drone_20",
+            "primitiveType": 1,
+            "selected": false,
+            "transform": {
+                "position": [
+                    86.45589447021484,
+                    3.257399559020996,
+                    24.21205711364746
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    5.0,
+                    5.0,
+                    5.0
                 ]
             },
             "type": 1,

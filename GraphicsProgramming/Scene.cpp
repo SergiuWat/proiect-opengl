@@ -44,7 +44,31 @@ Scene::Scene(Input *in)
 	//defaultLight->specular = Vector3(1.0f, 1.0f, 1.0f);
 
 	//lights.push_back(defaultLight);
+
+
+
 	LoadScene("scene.json");
+
+	Light* fireLight = new Light();
+
+	fireLight->name = "FireLight";
+	fireLight->type = LightType::Point;
+
+	fireLight->active = true;
+	fireLight->visible = true;
+
+	fireLight->position = Vector3(0.0f, 2.0f, 0.0f);
+
+	fireLight->ambient = Vector3(0.2f, 0.05f, 0.0f);
+	fireLight->diffuse = Vector3(1.0f, 0.3f, 0.1f);
+	fireLight->specular = Vector3(1.0f, 0.5f, 0.2f);
+
+
+	fireLight->constantAttenuation = 1.0f;
+	fireLight->linearAttenuation = 0.09f;
+	fireLight->quadraticAttenuation = 0.032f;
+
+	lights.push_back(fireLight);
 	skybox.loadTexture();
 	
 }
@@ -1007,7 +1031,7 @@ void Scene::drawSun()
 	renderer.ApplyMaterial(Vector3(1.0f, 0.8f, 0.2f), Vector3(1.0f, 0.9f, 0.3f), Vector3(1.0f, 1.0f, 0.5f), 10.0f);
 	GLfloat emission[] = { 1.0f, 0.8f, 0.2f, 1.0f };
 	glMaterialfv(GL_FRONT, GL_EMISSION, emission);
-	glScalef(0.5f, 0.5f, 0.5f);
+	glScalef(1.5f, 1.5f, 1.5f);
 	proceduralShapes.renderSphere();
 
 	glPopMatrix();
@@ -1016,12 +1040,12 @@ void Scene::drawSun()
 void Scene::drawEarth()
 {
 	glRotatef(solarSystemRotation, 0, 0, 1);
-	glTranslatef(2.0f, 0.0f, 0.0f);
+	glTranslatef(10.0f, 0.0f, 0.0f);
 
 	glPushMatrix();
 
 	renderer.ApplyMaterial(Vector3(0.0f, 0.0f, 0.2f), Vector3(0.0f, 0.0f, 0.8f), Vector3(0.3f, 0.3f, 1.0f), 32.0f);
-	glScalef(0.2f, 0.2f, 0.2f);
+	glScalef(1.2f, 1.2f, 1.2f);
 	proceduralShapes.renderSphere();
 
 	glPopMatrix();
@@ -1030,12 +1054,12 @@ void Scene::drawEarth()
 void Scene::drawEarth2()
 {
 	glRotatef(solarSystemRotation, 0, 0, 1);
-	glTranslatef(4.0f, 0.0f, 0.0f);
+	glTranslatef(10.0f, 0.0f, 0.0f);
 
 	glPushMatrix();
 
 	renderer.ApplyMaterial(Vector3(0.2f, 0.0f, 0.0f), Vector3(0.8f, 0.1f, 0.1f), Vector3(1.0f, 0.3f, 0.3f), 16.0f);
-	glScalef(0.4f, 0.4f, 0.4f);
+	glScalef(1.4f, 1.4f, 1.4f);
 	proceduralShapes.renderSphere();
 
 	glPopMatrix();
@@ -1052,12 +1076,12 @@ void Scene::drawEarth2()
 void Scene::drawEarth2FirstMoon()
 {
 	glRotatef(solarSystemRotation * 2.0f, 0, 0, 1);
-	glTranslatef(1.0f, 0.0f, 0.0f);
+	glTranslatef(7.0f, 0.0f, 0.0f);
 
 	glPushMatrix();
 
 	renderer.ApplyMaterial(Vector3(0.2f, 0.2f, 0.2f), Vector3(0.6f, 0.6f, 0.6f), Vector3(0.3f, 0.3f, 0.3f), 8.0f);
-	glScalef(0.1f, 0.1f, 0.1f);
+	glScalef(1.1f, 1.1f, 1.1f);
 	proceduralShapes.renderSphere();
 
 	glPopMatrix();
@@ -1070,13 +1094,13 @@ void Scene::drawEarth2FirstMoon()
 void Scene::drawEarth2SecondMoon()
 {
 	glRotatef(solarSystemRotation * 1.5f, 0, 1, 0);
-	glTranslatef(1.2f, 0.0f, 0.0f);
+	glTranslatef(7.2f, 0.0f, 0.0f);
 
 	glPushMatrix();
 
 	renderer.ApplyMaterial(Vector3(0.2f, 0.2f, 0.2f), Vector3(0.6f, 0.6f, 0.6f), Vector3(0.3f, 0.3f, 0.3f), 8.0f);
 
-	glScalef(0.12f, 0.12f, 0.12f);
+	glScalef(1.12f, 1.12f, 1.12f);
 	proceduralShapes.renderSphere();
 
 	glPopMatrix();
@@ -1085,12 +1109,12 @@ void Scene::drawEarth2SecondMoon()
 void Scene::drawEarth2MoonWithAMoon()
 {
 	glRotatef(solarSystemRotation * 3.0f, 0, 1, 0);
-	glTranslatef(0.4f, 0.0f, 0.0f);
+	glTranslatef(6.4f, 0.0f, 0.0f);
 
 	glPushMatrix();
 
 	renderer.ApplyMaterial(Vector3(0.2f, 0.2f, 0.2f), Vector3(0.6f, 0.6f, 0.6f), Vector3(0.3f, 0.3f, 0.3f), 8.0f);
-	glScalef(0.05f, 0.05f, 0.05f);
+	glScalef(0.15f, 0.15f, 0.15f);
 	proceduralShapes.renderSphere();
 
 	glPopMatrix();

@@ -96,7 +96,7 @@ protected:
 
 	ProceduralGeneratedShapes proceduralShapes;
 
-	Vector3 solarSystemPosition = Vector3(20.0f, 8.0f, 20.0f);
+	Vector3 solarSystemPosition = Vector3(67.0f, 73.0f, 82.0f);
 
 	float solarSystemRotation = 0.0f;
 	float solarSystemRotationSpeed = 20.0f;
