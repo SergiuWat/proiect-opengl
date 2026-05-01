@@ -12,6 +12,8 @@ Renderer::Renderer()
 void Renderer::Render(GameObject* gameObject)
 {
 	if (gameObject == nullptr) return;
+    if (!gameObject->visible) return;
+    if (!gameObject->active) return;
 
 	glPushMatrix();
 	ApplyTransform(gameObject->transform);
@@ -311,9 +313,6 @@ void Renderer::ApplyTexture(GameObject* gameObject)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
 
-void Renderer::LoadTexture()
-{
-}
 
 void Renderer::RenderSphereAtLightLocation(Light* light)
 {

@@ -28,4 +28,3 @@ public:
 	ModelLoader* model;
 	Transform transform;
 };
-

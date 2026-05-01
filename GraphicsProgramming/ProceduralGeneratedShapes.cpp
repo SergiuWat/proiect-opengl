@@ -3,10 +3,13 @@
 
 ProceduralGeneratedShapes::ProceduralGeneratedShapes()
 {
+
 }
 
-void ProceduralGeneratedShapes::renderSphere()
+void ProceduralGeneratedShapes::renderSphere(GLuint textureID)
 {
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, textureID);
     float radius = 1.0f;
     int segments = 30;
 
@@ -57,6 +60,8 @@ void ProceduralGeneratedShapes::renderSphere()
             glEnd();
         }
     }
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
 }
 
 

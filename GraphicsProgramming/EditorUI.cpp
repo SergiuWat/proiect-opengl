@@ -33,15 +33,18 @@ void EditorUI::DeveloperInformation()
 	ImGui::SetNextWindowPos(windowPos, ImGuiCond_Always);
 	ImGui::Begin("Developers Information");
 
-	ImGui::Text("Press 'l' for toggle mouse");
-	ImGui::Separator();
+	ImGui::Text("Press 'L' for toggle mouse");
 	ImGui::Text("Mouse Locked: %s", scene->mouseLocked ? "ON" : "OFF");
+	ImGui::Separator();
 
 	ImGui::Text("Press 'h' to toggle to editor");
 	ImGui::Text("Editor Mode: %s", scene->editorMode ? "ON" : "OFF");
 
 	ImGui::Separator();
 	ImGui::Text("Press 'backspace' to delete last object");
+	ImGui::Separator();
+
+	ImGui::Text("Press 'RMB' to place the object");
 	ImGui::Separator();
 
 	ImGui::Text("Snap Mode: %s", scene->snapEnabled ? "ON" : "OFF");

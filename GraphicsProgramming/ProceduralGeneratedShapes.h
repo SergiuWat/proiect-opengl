@@ -8,5 +8,5 @@ class ProceduralGeneratedShapes
 {
 public:
 	ProceduralGeneratedShapes();
-	void renderSphere();
+	void renderSphere(GLuint textureID);
 };

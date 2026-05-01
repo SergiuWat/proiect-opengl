@@ -20,7 +20,6 @@ public:
 	void ApplyMaterial(const Vector3& ambient, const Vector3& diffuse, const Vector3& specular, float shininess);
 	void ApplyLights(const std::vector<Light*>& lights, const Vector3& globalAmbient);
 	void ApplyTexture(GameObject* gameObject);
-	void LoadTexture();
 
 	void RenderSphereAtLightLocation(Light* light);
 };

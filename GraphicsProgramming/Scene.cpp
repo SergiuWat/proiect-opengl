@@ -45,32 +45,9 @@ Scene::Scene(Input *in)
 
 	//lights.push_back(defaultLight);
 
-
-
 	LoadScene("scene.json");
 
-	Light* fireLight = new Light();
-
-	fireLight->name = "FireLight";
-	fireLight->type = LightType::Point;
-
-	fireLight->active = true;
-	fireLight->visible = true;
-
-	fireLight->position = Vector3(0.0f, 2.0f, 0.0f);
-
-	fireLight->ambient = Vector3(0.2f, 0.05f, 0.0f);
-	fireLight->diffuse = Vector3(1.0f, 0.3f, 0.1f);
-	fireLight->specular = Vector3(1.0f, 0.5f, 0.2f);
-
-
-	fireLight->constantAttenuation = 1.0f;
-	fireLight->linearAttenuation = 0.09f;
-	fireLight->quadraticAttenuation = 0.032f;
-
-	lights.push_back(fireLight);
-	skybox.loadTexture();
-	
+	skybox.loadTexture();	
 }
 
 void Scene::handleInput(float dt)
@@ -411,7 +388,7 @@ void Scene::resize(int w, int h)
 	float ratio = (float)w / (float)h;
 	fov = 45.0f;
 	nearPlane = 0.1f;
-	farPlane = 100.0f;
+	farPlane = 1000.0f;
 
 	// Use the Projection Matrix
 	glMatrixMode(GL_PROJECTION);
@@ -774,6 +751,7 @@ bool Scene::SaveScene(const std::string& filePath)
 
 	return true;
 }
+
 bool Scene::LoadScene(const std::string& filePath)
 {
 	std::ifstream inFile(filePath);
@@ -1032,7 +1010,9 @@ void Scene::drawSun()
 	GLfloat emission[] = { 1.0f, 0.8f, 0.2f, 1.0f };
 	glMaterialfv(GL_FRONT, GL_EMISSION, emission);
 	glScalef(1.5f, 1.5f, 1.5f);
-	proceduralShapes.renderSphere();
+
+	GLuint sunTexture = textureManager.LoadTexture("gfx/Gaseous.png");
+	proceduralShapes.renderSphere(sunTexture);
 
 	glPopMatrix();
 }
@@ -1046,7 +1026,9 @@ void Scene::drawEarth()
 
 	renderer.ApplyMaterial(Vector3(0.0f, 0.0f, 0.2f), Vector3(0.0f, 0.0f, 0.8f), Vector3(0.3f, 0.3f, 1.0f), 32.0f);
 	glScalef(1.2f, 1.2f, 1.2f);
-	proceduralShapes.renderSphere();
+
+	GLuint earthTexture = textureManager.LoadTexture("gfx/Jungle.png");
+	proceduralShapes.renderSphere(earthTexture);
 
 	glPopMatrix();
 }
@@ -1060,7 +1042,9 @@ void Scene::drawEarth2()
 
 	renderer.ApplyMaterial(Vector3(0.2f, 0.0f, 0.0f), Vector3(0.8f, 0.1f, 0.1f), Vector3(1.0f, 0.3f, 0.3f), 16.0f);
 	glScalef(1.4f, 1.4f, 1.4f);
-	proceduralShapes.renderSphere();
+
+	GLuint earth2Texture = textureManager.LoadTexture("gfx/Arid.png");
+	proceduralShapes.renderSphere(earth2Texture);
 
 	glPopMatrix();
 
@@ -1082,7 +1066,9 @@ void Scene::drawEarth2FirstMoon()
 
 	renderer.ApplyMaterial(Vector3(0.2f, 0.2f, 0.2f), Vector3(0.6f, 0.6f, 0.6f), Vector3(0.3f, 0.3f, 0.3f), 8.0f);
 	glScalef(1.1f, 1.1f, 1.1f);
-	proceduralShapes.renderSphere();
+
+	GLuint martianTexture = textureManager.LoadTexture("gfx/Martian.png");
+	proceduralShapes.renderSphere(martianTexture);
 
 	glPopMatrix();
 
@@ -1101,7 +1087,9 @@ void Scene::drawEarth2SecondMoon()
 	renderer.ApplyMaterial(Vector3(0.2f, 0.2f, 0.2f), Vector3(0.6f, 0.6f, 0.6f), Vector3(0.3f, 0.3f, 0.3f), 8.0f);
 
 	glScalef(1.12f, 1.12f, 1.12f);
-	proceduralShapes.renderSphere();
+
+	GLuint methaneTexture = textureManager.LoadTexture("gfx/Methane.png");
+	proceduralShapes.renderSphere(methaneTexture);
 
 	glPopMatrix();
 }
@@ -1115,7 +1103,9 @@ void Scene::drawEarth2MoonWithAMoon()
 
 	renderer.ApplyMaterial(Vector3(0.2f, 0.2f, 0.2f), Vector3(0.6f, 0.6f, 0.6f), Vector3(0.3f, 0.3f, 0.3f), 8.0f);
 	glScalef(0.15f, 0.15f, 0.15f);
-	proceduralShapes.renderSphere();
+
+	GLuint sandyTexture = textureManager.LoadTexture("gfx/Sandy.png");
+	proceduralShapes.renderSphere(sandyTexture);
 
 	glPopMatrix();
 }
